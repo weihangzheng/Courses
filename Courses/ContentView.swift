@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
+    var classes = loadCSV(from: "classes")
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        List(classes){ Class in
+            Text(Class.teacher_name)
+        }
     }
 }
 
