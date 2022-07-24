@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
-    var classes = loadCSV(from: "classes")
+    var teachers = getAllTeachers()
     var body: some View {
-        List(classes){ Class in
-            Text(Class.teacher_name)
+        List(teachers, id: \.self){ teacher in
+            Text(teacher)
         }
     }
 }

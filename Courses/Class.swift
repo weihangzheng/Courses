@@ -47,3 +47,17 @@ func loadCSV(from csvName: String) -> [Class]{
     
     return csvToStruct
 }
+
+func getAllTeachers() -> [String]{
+    let classes = loadCSV(from: "classes")
+    var teachers: Set<String> = []
+    for line in classes{
+        teachers.insert(line.teacher_name)
+    }
+    var teacher_list = [String]()
+    for teacher in teachers{
+        teacher_list.append(teacher)
+    }
+    
+    return teacher_list
+}
