@@ -61,3 +61,12 @@ func getAllTeachers() -> [String]{
     
     return teacher_list
 }
+
+func getTeacherClasses() -> [String:[String]]{
+    let classes = loadCSV(from: "classes")
+    var teacher_classes: [String:[String]] = [:]
+    for line in classes{
+        teacher_classes[line.teacher_name, default: []].append(line.subject)
+    }
+    return teacher_classes
+}
