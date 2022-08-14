@@ -1,23 +1,31 @@
 //
-//  ContentView.swift
+//  TeacherList.swift
 //  Courses
 //
 //  Created by Weihang Zheng on 2022-07-18.
 //
-
 import SwiftUI
 
-struct ContentView: View {
+struct TeacherList: View {
     var teachers = getAllTeachers()
+    var tc = getTeacherClasses()
     var body: some View {
-        List(teachers, id: \.self){ teacher in
-            Text(teacher)
+        NavigationView{
+            List(teachers, id: \.self){ teacher in
+                NavigationLink {
+                    List(tc[teacher]!, id: \.self){ subjects in
+                        Text(subjects)
+                    }
+                } label: {
+                    Text(teacher)
+                }.navigationTitle("Teacher List")
+            }
         }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct TeacherList_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        TeacherList()
     }
 }
