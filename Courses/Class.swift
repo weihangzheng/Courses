@@ -21,6 +21,17 @@ struct Class: Identifiable{
     }
 }
 
+struct Teacher_Des: Identifiable{
+    var id = UUID()
+    var teacher_name: String
+    var description: String
+    
+    init(raw: [String]){
+        teacher_name = raw[0]
+        description = raw[1]
+    }
+}
+
 func loadCSV(from csvName: String) -> [Class]{
     
     var csvToStruct = [Class]()
@@ -48,6 +59,34 @@ func loadCSV(from csvName: String) -> [Class]{
     return csvToStruct
 }
 
+func loadCSVTeacherDes(from csvName: String) -> [Teacher_Des]{
+    
+    var csvToStruct = [Teacher_Des]()
+    
+    guard let filePath = Bundle.main.path(forResource: csvName, ofType: "csv") else{
+        return []
+    }
+    
+    var data = ""
+    do{
+        data = try String(contentsOfFile: filePath)
+    }catch{
+        print(error)
+        return []
+    }
+    var rows = data.components(separatedBy: "\n")
+    rows.removeFirst()
+    
+    for row in rows{
+        let csvColumns = row.description.components(separatedBy: ",")
+        let teamStruct = Teacher_Des.init(raw: csvColumns)
+        csvToStruct.append(teamStruct)
+    }
+    
+    return csvToStruct
+}
+
+
 func getAllTeachers() -> [String]{
     let classes = loadCSV(from: "classes")
     var teachers: Set<String> = []
@@ -70,3 +109,44 @@ func getTeacherClasses() -> [String:[String]]{
     }
     return teacher_classes
 }
+
+func getAllCourses() -> [String]{
+    let classes = loadCSV(from: "classes")
+    var courses: Set<String> = []
+    for line in classes{
+        courses.insert(line.subject)
+    }
+    var course_list = [String]()
+    for course in courses{
+        course_list.append(course)
+    }
+    return course_list
+}
+
+func getCourseTeachers() -> [String:[String]]{
+    let classes = loadCSV(from: "classes")
+    var course_teachers: [String:[String]] = [:]
+    for line in classes{
+        course_teachers[line.subject, default: []].append(line.teacher_name)
+    }
+    return course_teachers
+}
+
+func getTeacherDes() -> [String:String]{
+    let classes = loadCSVTeacherDes(from: "teacher_des - Sheet1")
+    var teacher_des: [String:String] = [:]
+    for line in classes{
+        teacher_des[line.teacher_name] = line.description
+    }
+    return teacher_des
+}
+
+func getSubjectDes() -> [String:String]{
+    let classes = loadCSVTeacherDes(from: "subject_des - Sheet1")
+    var teacher_des: [String:String] = [:]
+    for line in classes{
+        teacher_des[line.teacher_name] = line.description
+    }
+    return teacher_des
+}
+

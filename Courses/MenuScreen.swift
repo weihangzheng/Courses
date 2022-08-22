@@ -9,13 +9,18 @@ import SwiftUI
 
 struct MenuScreen: View {
     var body: some View {
-        NavigationView{
-            NavigationLink {
-                TeacherList()
-            } label: {
-                Text("Teacher List")
-            }.navigationTitle("Main Menu")
-        }
+        NavigationView {
+                    VStack {
+                        NavigationLink(destination: TeacherList()) {
+                            Text("Teacher List")
+                        }
+
+                        NavigationLink(destination: CourseView()) {
+                            Text("Course List")
+                        }
+                        
+                    }.navigationTitle("Main Menu").multilineTextAlignment(.center)
+                }
     }
 }
 
