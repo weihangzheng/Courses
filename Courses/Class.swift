@@ -97,6 +97,7 @@ func getAllTeachers() -> [String]{
     for teacher in teachers{
         teacher_list.append(teacher)
     }
+    teacher_list = teacher_list.sorted()
     
     return teacher_list
 }
@@ -120,6 +121,7 @@ func getAllCourses() -> [String]{
     for course in courses{
         course_list.append(course)
     }
+    course_list = course_list.sorted()
     return course_list
 }
 
