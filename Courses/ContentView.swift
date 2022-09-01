@@ -22,7 +22,7 @@ struct TeacherList: View {
                     }.navigationTitle(teacher)
                 } label: {
                     Text(teacher)
-                }.navigationTitle("Teacher List").listStyle(PlainListStyle())
+                }.navigationTitle("Teacher List")
             }
         }
     }

@@ -23,7 +23,7 @@ struct CourseView: View {
                     }
                 } label: {
                     Text(courses)
-                }.navigationTitle("Course List").listStyle(PlainListStyle())
+                }.navigationTitle("Course List")
             }
         }
     }

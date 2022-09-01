@@ -31,16 +31,16 @@ struct MenuScreen: View {
     var body: some View {
         NavigationView {
                     VStack {
-                        Text("99 Cultural Exchange Education").frame(maxWidth: .infinity, alignment:.center).font(Font.title.weight(.black))
+                        Text("99 Cultural Exchange Education").frame(maxWidth: .infinity, alignment:.center).font(Font.title.weight(.black)).multilineTextAlignment(.center)
                         Image("99").resizable()
                             .frame(width: 200.0, height: 200.0)
                         NavigationLink(destination: TeacherList()) {
                             Text("Teacher List （教师名单）")
-                        }.buttonStyle(BananaButtonStyle(color: .yellow))
+                        }.buttonStyle(BananaButtonStyle(color: .purple))
 
                         NavigationLink(destination: CourseView()) {
                             Text("Course List （课程清单）")
-                        }.buttonStyle(BananaButtonStyle(color: .yellow))
+                        }.buttonStyle(BananaButtonStyle(color: .purple))
                         
                         
 
